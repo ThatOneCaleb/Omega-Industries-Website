@@ -111,17 +111,17 @@
       theme: {
         extend: {
           colors: {
-            midnight: '#0A0E14',
-            steel: '#141B24',
-            iron: '#1C2530',
-            gunmetal: '#2A3544',
+            midnight: '#FFFFFF',
+            steel: '#F3F4F6',
+            iron: '#E5E7EB',
+            gunmetal: '#D1D5DB',
             forge: '#2D8F4E',
             'forge-bright': '#38B261',
             ember: '#C94A1A',
             'ember-bright': '#E05A2A',
-            chrome: '#E8ECF0',
-            alloy: '#B0BEC5',
-            rivet: '#8A95A5',
+            chrome: '#111827',
+            alloy: '#4B5563',
+            rivet: '#6B7280',
             'blue-steel': '#1A6FC4',
           },
           fontFamily: {
@@ -135,7 +135,7 @@
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; }
-    body { font-family: 'DM Sans', sans-serif; background: #0A0E14; color: #E8ECF0; overflow-x: hidden; }
+    body { font-family: 'DM Sans', sans-serif; background: #FFFFFF; color: #1A1A2E; overflow-x: hidden; }
 
     /* Grain texture overlay */
     body::after {
@@ -163,16 +163,16 @@
     .nav-blur {
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
-      background: rgba(10, 14, 20, 0.85);
-      border-bottom: 1px solid rgba(42, 53, 68, 0.4);
+      background: rgba(255, 255, 255, 0.85);
+      border-bottom: 1px solid rgba(209, 213, 219, 0.5);
     }
 
     /* Hero gradient mesh */
     .hero-gradient {
       background:
-        radial-gradient(ellipse 80% 60% at 20% 80%, rgba(45, 143, 78, 0.08) 0%, transparent 70%),
-        radial-gradient(ellipse 60% 80% at 80% 20%, rgba(26, 111, 196, 0.06) 0%, transparent 70%),
-        radial-gradient(ellipse 100% 100% at 50% 50%, rgba(20, 27, 36, 1) 0%, rgba(10, 14, 20, 1) 100%);
+        radial-gradient(ellipse 80% 60% at 20% 80%, rgba(45, 143, 78, 0.06) 0%, transparent 70%),
+        radial-gradient(ellipse 60% 80% at 80% 20%, rgba(26, 111, 196, 0.05) 0%, transparent 70%),
+        radial-gradient(ellipse 100% 100% at 50% 50%, rgba(243, 244, 246, 1) 0%, rgba(255, 255, 255, 1) 100%);
     }
 
     /* Card hover effects */
@@ -257,7 +257,7 @@
 
     /* Partner logos */
     .partner-logo {
-      filter: grayscale(1) brightness(0.6);
+      filter: grayscale(1) brightness(1);
       transition: filter 0.4s ease, transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
     }
     .partner-logo:hover {
@@ -267,7 +267,7 @@
 
     /* Stat counter glow */
     .stat-value {
-      background: linear-gradient(180deg, #E8ECF0 0%, #7A8899 100%);
+      background: linear-gradient(180deg, #111827 0%, #6B7280 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
@@ -319,8 +319,8 @@
 
     /* Contact form inputs */
     .form-input {
-      background: rgba(28, 37, 48, 0.8);
-      border: 1px solid rgba(42, 53, 68, 0.6);
+      background: rgba(255, 255, 255, 0.9);
+      border: 1px solid rgba(209, 213, 219, 0.8);
       transition: border-color 0.3s ease, box-shadow 0.3s ease;
     }
     .form-input:focus {
@@ -353,10 +353,10 @@
 
     /* Hero text readability over shader */
     .hero-text-shadow {
-      text-shadow: 0 2px 20px rgba(0,0,0,0.6), 0 0 60px rgba(0,0,0,0.4);
+      text-shadow: 0 2px 20px rgba(255,255,255,0.6), 0 0 60px rgba(255,255,255,0.4);
     }
     .hero-body-shadow {
-      text-shadow: 0 1px 12px rgba(0,0,0,0.7), 0 0 40px rgba(0,0,0,0.4);
+      text-shadow: 0 1px 12px rgba(255,255,255,0.7), 0 0 40px rgba(255,255,255,0.4);
     }
 
     /* Hero heading stagger */
@@ -382,7 +382,7 @@
     <nav class="max-w-7xl mx-auto px-6 lg:px-8 flex items-center justify-between h-20">
       <!-- Logo -->
       <a href="index.html" class="flex-shrink-0">
-        <img src="brand_assets/omega_logo3_op_1188x325.jpg" alt="Omega Industries of Michigan" class="h-14 w-auto" style="mix-blend-mode: lighten;">
+        <img src="brand_assets/omega_logo3_op_1188x325.jpg" alt="Omega Industries of Michigan" class="h-14 w-auto" style="mix-blend-mode: multiply;">
       </a>
 
       <!-- Desktop Nav -->
@@ -422,9 +422,9 @@
   <!-- ========== HERO SECTION ========== -->
   <section class="relative min-h-screen flex items-center overflow-hidden">
     <!-- Shader background -->
-    <div id="shader-bg" class="absolute inset-0 z-0" style="background:#000;"></div>
+    <div id="shader-bg" class="absolute inset-0 z-0" style="background:#FFF;"></div>
     <!-- Dark overlay for readability -->
-    <div class="absolute inset-0 z-[1]" style="background: radial-gradient(ellipse 80% 70% at 30% 60%, rgba(10,14,20,0.55) 0%, rgba(10,14,20,0.75) 50%, rgba(10,14,20,0.85) 100%);"></div>
+    <div class="absolute inset-0 z-[1]" style="background: radial-gradient(ellipse 80% 70% at 30% 60%, rgba(255,255,255,0.55) 0%, rgba(255,255,255,0.7) 50%, rgba(255,255,255,0.8) 100%);"></div>
     <!-- Accent line -->
     <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-forge/40 to-transparent z-[2]"></div>
 
@@ -490,8 +490,8 @@
           <!-- Label line -->
           <line x1="188" y1="236" x2="215" y2="218" stroke="rgba(26,111,196,0.5)" stroke-width="1"/>
           <!-- Label text -->
-          <text x="218" y="215" fill="#B0BEC5" font-family="'Barlow Condensed', sans-serif" font-size="11" font-weight="600" letter-spacing="0.12em">GRAND RAPIDS</text>
-          <text x="218" y="228" fill="rgba(138,149,165,0.6)" font-family="'DM Sans', sans-serif" font-size="8.5">42.9634° N, 85.6681° W</text>
+          <text x="218" y="215" fill="#4B5563" font-family="'Barlow Condensed', sans-serif" font-size="11" font-weight="600" letter-spacing="0.12em">GRAND RAPIDS</text>
+          <text x="218" y="228" fill="rgba(75,85,99,0.6)" font-family="'DM Sans', sans-serif" font-size="8.5">42.9634° N, 85.6681° W</text>
         </svg>
         <!-- "Est. 1990" below map -->
         <div class="text-center mt-3">
@@ -501,6 +501,13 @@
     </div>
   </section>
 
+  <!-- Logo divider -->
+  <div class="bg-midnight py-6 flex items-center justify-center">
+    <div class="h-px flex-1 bg-gradient-to-r from-transparent to-gunmetal"></div>
+    <img src="brand_assets/omega_logo3_op_1188x325.jpg" alt="Omega Industries" class="h-8 w-auto mx-6 opacity-30" style="mix-blend-mode: multiply;">
+    <div class="h-px flex-1 bg-gradient-to-l from-transparent to-gunmetal"></div>
+  </div>
+
   <!-- ========== PRODUCTS SECTION ========== -->
   <section id="products" class="relative py-24 lg:py-36 bg-midnight">
     <!-- Top border accent -->
@@ -509,7 +516,10 @@
     <div class="max-w-7xl mx-auto px-6 lg:px-8">
       <!-- Section Header -->
       <div class="mb-16 lg:mb-24 reveal">
-        <span class="font-display text-xs font-500 tracking-[0.25em] uppercase text-forge mb-4 block">001 / Products</span>
+        <div class="flex items-center gap-3 mb-4">
+          <img src="brand_assets/omega_logo3_op_1188x325.jpg" alt="" class="h-5 w-auto opacity-40" style="mix-blend-mode: multiply;">
+          <span class="font-display text-xs font-500 tracking-[0.25em] uppercase text-forge">001 / Products</span>
+        </div>
         <h2 class="font-display font-800 uppercase tracking-[-0.02em] text-chrome mb-6" style="font-size: clamp(2rem, 5vw, 4rem); line-height: 0.95;">
           Three Divisions.<br>One Source.
         </h2>
@@ -522,15 +532,15 @@
       <div class="grid md:grid-cols-3 gap-6 lg:gap-8 stagger">
 
         <!-- Powder Coating Card -->
-        <a href="powder-coating.html" class="product-card group relative block bg-iron rounded-xl overflow-hidden reveal">
+        <a href="powder-coating.html" class="product-card group relative block rounded-xl overflow-hidden reveal" style="background: #0A0E14;">
           <div class="aspect-[4/3] overflow-hidden">
             <img src="frames/powder/frame_0001.jpg" alt="Powder Coating Equipment" class="card-image w-full h-full object-cover">
-            <div class="absolute inset-0 bg-gradient-to-t from-iron via-iron/40 to-transparent"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-[#0A0E14] via-[#0A0E14]/40 to-transparent"></div>
           </div>
           <div class="relative p-6 lg:p-8 -mt-16 z-10">
             <span class="font-display text-[10px] tracking-[0.3em] uppercase text-forge block mb-2">Turn-Key Systems</span>
-            <h3 class="font-display font-700 text-2xl lg:text-3xl uppercase tracking-tight text-chrome mb-3">Powder Coating</h3>
-            <p class="font-body text-alloy text-sm leading-relaxed mb-4">Complete conveyor turn-key systems with Wagner technology and Fanuc robotic automation.</p>
+            <h3 class="font-display font-700 text-2xl lg:text-3xl uppercase tracking-tight text-white mb-3">Powder Coating</h3>
+            <p class="font-body text-gray-400 text-sm leading-relaxed mb-4">Complete conveyor turn-key systems with Wagner technology and Fanuc robotic automation.</p>
             <span class="flex items-center gap-2 font-display text-xs tracking-[0.2em] uppercase text-forge">
               Explore
               <svg class="card-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
@@ -539,15 +549,15 @@
         </a>
 
         <!-- Air Filters Card -->
-        <a href="air-filters.html" class="product-card group relative block bg-iron rounded-xl overflow-hidden reveal">
+        <a href="air-filters.html" class="product-card group relative block rounded-xl overflow-hidden reveal" style="background: #0A0E14;">
           <div class="aspect-[4/3] overflow-hidden">
             <img src="frames/filters/frame_0192.jpg" alt="Industrial Air Filters" class="card-image w-full h-full object-cover">
-            <div class="absolute inset-0 bg-gradient-to-t from-iron via-iron/40 to-transparent"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-[#0A0E14] via-[#0A0E14]/40 to-transparent"></div>
           </div>
           <div class="relative p-6 lg:p-8 -mt-16 z-10">
             <span class="font-display text-[10px] tracking-[0.3em] uppercase text-forge block mb-2">Complete Filtration</span>
-            <h3 class="font-display font-700 text-2xl lg:text-3xl uppercase tracking-tight text-chrome mb-3">Air Filters</h3>
-            <p class="font-body text-alloy text-sm leading-relaxed mb-4">HVAC, industrial, automotive finishing, commercial building, dust cartridge, and metal washable filters.</p>
+            <h3 class="font-display font-700 text-2xl lg:text-3xl uppercase tracking-tight text-white mb-3">Air Filters</h3>
+            <p class="font-body text-gray-400 text-sm leading-relaxed mb-4">HVAC, industrial, automotive finishing, commercial building, dust cartridge, and metal washable filters.</p>
             <span class="flex items-center gap-2 font-display text-xs tracking-[0.2em] uppercase text-forge">
               Explore
               <svg class="card-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
@@ -556,15 +566,15 @@
         </a>
 
         <!-- Liquid Finishing Card -->
-        <a href="liquid-finishing.html" class="product-card group relative block bg-iron rounded-xl overflow-hidden reveal">
+        <a href="liquid-finishing.html" class="product-card group relative block rounded-xl overflow-hidden reveal" style="background: #0A0E14;">
           <div class="aspect-[4/3] overflow-hidden">
             <img src="frames/liquid/frame_0001.jpg" alt="Liquid Finishing Equipment" class="card-image w-full h-full object-cover">
-            <div class="absolute inset-0 bg-gradient-to-t from-iron via-iron/40 to-transparent"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-[#0A0E14] via-[#0A0E14]/40 to-transparent"></div>
           </div>
           <div class="relative p-6 lg:p-8 -mt-16 z-10">
             <span class="font-display text-[10px] tracking-[0.3em] uppercase text-forge block mb-2">Spray Systems</span>
-            <h3 class="font-display font-700 text-2xl lg:text-3xl uppercase tracking-tight text-chrome mb-3">Liquid Finishing</h3>
-            <p class="font-body text-alloy text-sm leading-relaxed mb-4">Turn-key liquid finishing systems for manual and automatic spraying — paint, stain, and adhesives.</p>
+            <h3 class="font-display font-700 text-2xl lg:text-3xl uppercase tracking-tight text-white mb-3">Liquid Finishing</h3>
+            <p class="font-body text-gray-400 text-sm leading-relaxed mb-4">Turn-key liquid finishing systems for manual and automatic spraying — paint, stain, and adhesives.</p>
             <span class="flex items-center gap-2 font-display text-xs tracking-[0.2em] uppercase text-forge">
               Explore
               <svg class="card-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
@@ -579,6 +589,8 @@
   <section class="relative py-20 bg-steel texture-lines overflow-hidden">
     <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gunmetal to-transparent"></div>
     <div class="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gunmetal to-transparent"></div>
+    <!-- Watermark logo -->
+    <img src="brand_assets/omega_logo3_op_1188x325.jpg" alt="" aria-hidden="true" class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] opacity-[0.04] pointer-events-none select-none" style="mix-blend-mode: multiply;">
 
     <div class="max-w-7xl mx-auto px-6 lg:px-8">
       <div class="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12 stagger">
@@ -603,10 +615,15 @@
   </section>
 
   <!-- ========== PARTNERS SECTION ========== -->
-  <section class="relative py-24 lg:py-36 bg-midnight">
+  <section class="relative py-24 lg:py-36 bg-midnight overflow-hidden">
+    <!-- Large watermark logo behind partners -->
+    <img src="brand_assets/omega_logo3_op_1188x325.jpg" alt="" aria-hidden="true" class="absolute right-[-100px] top-1/2 -translate-y-1/2 w-[600px] opacity-[0.03] pointer-events-none select-none rotate-[-8deg]" style="mix-blend-mode: multiply;">
     <div class="max-w-7xl mx-auto px-6 lg:px-8">
       <div class="text-center mb-16 reveal">
-        <span class="font-display text-xs font-500 tracking-[0.25em] uppercase text-forge mb-4 block">002 / Partners</span>
+        <div class="flex items-center justify-center gap-3 mb-4">
+          <img src="brand_assets/omega_logo3_op_1188x325.jpg" alt="" class="h-5 w-auto opacity-40" style="mix-blend-mode: multiply;">
+          <span class="font-display text-xs font-500 tracking-[0.25em] uppercase text-forge">002 / Partners</span>
+        </div>
         <h2 class="font-display font-800 uppercase tracking-[-0.02em] text-chrome" style="font-size: clamp(2rem, 5vw, 3.5rem); line-height: 0.95;">
           Trusted By Industry Leaders
         </h2>
@@ -639,15 +656,20 @@
   </section>
 
   <!-- ========== CONTACT SECTION ========== -->
-  <section id="contact" class="relative py-24 lg:py-36 bg-steel">
+  <section id="contact" class="relative py-24 lg:py-36 bg-steel overflow-hidden">
     <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gunmetal to-transparent"></div>
+    <!-- Background watermark -->
+    <img src="brand_assets/omega_logo3_op_1188x325.jpg" alt="" aria-hidden="true" class="absolute left-[-80px] bottom-[-40px] w-[450px] opacity-[0.03] pointer-events-none select-none rotate-[12deg]" style="mix-blend-mode: multiply;">
 
     <div class="max-w-7xl mx-auto px-6 lg:px-8">
       <div class="grid lg:grid-cols-2 gap-16 lg:gap-24">
 
         <!-- Contact Info -->
         <div class="reveal">
-          <span class="font-display text-xs font-500 tracking-[0.25em] uppercase text-forge mb-4 block">003 / Contact</span>
+          <div class="flex items-center gap-3 mb-4">
+            <img src="brand_assets/omega_logo3_op_1188x325.jpg" alt="" class="h-5 w-auto opacity-40" style="mix-blend-mode: multiply;">
+            <span class="font-display text-xs font-500 tracking-[0.25em] uppercase text-forge">003 / Contact</span>
+          </div>
           <h2 class="font-display font-800 uppercase tracking-[-0.02em] text-chrome mb-8" style="font-size: clamp(2rem, 5vw, 3.5rem); line-height: 0.95;">
             Let&rsquo;s Build<br>Your System
           </h2>
@@ -734,7 +756,7 @@
       <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
         <!-- Logo & tagline -->
         <div class="lg:col-span-2">
-          <img src="brand_assets/omega_logo3_op_1188x325.jpg" alt="Omega Industries" class="h-12 w-auto mb-4" style="mix-blend-mode: lighten;">
+          <img src="brand_assets/omega_logo3_op_1188x325.jpg" alt="Omega Industries" class="h-12 w-auto mb-4" style="mix-blend-mode: multiply;">
           <p class="font-body text-alloy text-sm max-w-md" style="line-height: 1.7;">
             Any and all filtration and finishing equipment needs under one roof. Serving West Michigan and beyond since 1990.
           </p>
@@ -801,7 +823,7 @@
             }
           }
 
-          gl_FragColor = vec4(color[0], color[1], color[2], 1.0);
+          gl_FragColor = vec4(1.0 - color[0]*0.7, 1.0 - color[1]*0.7, 1.0 - color[2]*0.7, 1.0);
         }
       `;
 
