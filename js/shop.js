@@ -37,7 +37,7 @@ const OmegaShop = {
             <span class="font-display text-[10px] text-gray-500 tracking-wider uppercase">/${product.unit}</span>
           </div>
           <button
-            onclick="event.preventDefault(); event.stopPropagation();"
+            onclick="event.preventDefault();"
             class="snipcart-add-item w-full bg-forge hover:bg-forge-bright text-white font-display text-xs font-700 tracking-wider uppercase py-2.5 px-4 rounded-lg transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-forge focus-visible:outline-offset-2"
             data-item-id="${product.id}"
             data-item-price="${product.price}"
