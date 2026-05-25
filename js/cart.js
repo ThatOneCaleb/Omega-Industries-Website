@@ -292,8 +292,6 @@ const OmegaCart = {
       const data = await response.json();
 
       if (data.url) {
-        // Clear cart after successful session creation
-        this.clearCart();
         window.location.href = data.url;
       } else {
         throw new Error(data.error || 'Failed to create checkout session');
@@ -323,6 +321,7 @@ const OmegaCart = {
       // Check for success/cancel status
       const params = new URLSearchParams(window.location.search);
       if (params.get('success') === 'true') {
+        this.clearCart();
         container.innerHTML = `
           <div class="text-center py-20">
             <svg class="mx-auto mb-6" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#2D8F4E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
