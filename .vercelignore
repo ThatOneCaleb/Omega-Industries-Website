@@ -1,0 +1,6 @@
+node_modules
+serve.mjs
+screenshot.mjs
+temporary screenshots
+package.json
+package-lock.json

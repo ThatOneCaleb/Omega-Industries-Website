@@ -28,7 +28,8 @@ const mimeTypes = {
 };
 
 const server = createServer(async (req, res) => {
-  let filePath = join(__dirname, req.url === '/' ? 'index.html' : req.url);
+  const urlPath = new URL(req.url, `http://localhost:${PORT}`).pathname;
+  let filePath = join(__dirname, urlPath === '/' ? 'index.html' : decodeURIComponent(urlPath));
   const ext = extname(filePath).toLowerCase();
   const contentType = mimeTypes[ext] || 'application/octet-stream';
 

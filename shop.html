@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shop Industrial Equipment | Omega Industries of Michigan</title>
+  <meta name="description" content="Shop powder coating equipment, industrial air filters, and liquid finishing parts. Search by part number or category. Wagner, Donaldson, GFS, CAT Pumps. Ships from Grand Rapids, MI.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700;800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            midnight: '#FFFFFF',
+            steel: '#F3F4F6',
+            iron: '#E5E7EB',
+            gunmetal: '#D1D5DB',
+            forge: '#2D8F4E',
+            'forge-bright': '#38B261',
+            ember: '#C94A1A',
+            'ember-bright': '#E05A2A',
+            chrome: '#111827',
+            alloy: '#4B5563',
+            rivet: '#6B7280',
+            'blue-steel': '#1A6FC4',
+          },
+          fontFamily: {
+            display: ['"Barlow Condensed"', 'sans-serif'],
+            body: ['"DM Sans"', 'sans-serif'],
+          },
+        },
+      },
+    }
+  </script>
+
+  <!-- Snipcart -->
+  <link rel="preconnect" href="https://app.snipcart.com">
+  <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3/default/snipcart.css" />
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; background: #FFFFFF; color: #1A1A2E; overflow-x: hidden; }
+
+    /* Grain texture overlay */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.03;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    }
+
+    .nav-blur {
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      background: rgba(255, 255, 255, 0.85);
+      border-bottom: 1px solid rgba(209, 213, 219, 0.5);
+    }
+
+    .nav-link { position: relative; }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: #2D8F4E;
+      transition: width 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+    .nav-link:hover::after { width: 100%; }
+    .nav-link.active::after { width: 100%; }
+
+    .product-card {
+      transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+    .product-card:hover {
+      transform: translateY(-8px);
+    }
+    .product-card .card-image {
+      transition: transform 0.7s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+    .product-card:hover .card-image {
+      transform: scale(1.05);
+    }
+    .product-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 12px;
+      border: 1px solid transparent;
+      transition: border-color 0.4s ease;
+      pointer-events: none;
+    }
+    .product-card:hover::after {
+      border-color: rgba(45, 143, 78, 0.3);
+    }
+
+    .btn-primary {
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.3s ease;
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px rgba(45, 143, 78, 0.25);
+    }
+    .btn-primary:focus-visible {
+      outline: 2px solid #2D8F4E;
+      outline-offset: 3px;
+    }
+    .btn-primary:active { transform: translateY(0); }
+
+    .btn-outline {
+      transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease, transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+    .btn-outline:hover {
+      background: rgba(45, 143, 78, 0.1);
+      border-color: #2D8F4E;
+      color: #38B261;
+      transform: translateY(-2px);
+    }
+    .btn-outline:focus-visible {
+      outline: 2px solid #2D8F4E;
+      outline-offset: 3px;
+    }
+    .btn-outline:active { transform: translateY(0); }
+
+    /* Search input */
+    .search-input {
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    .search-input:focus {
+      outline: none;
+      border-color: #2D8F4E;
+      box-shadow: 0 0 0 3px rgba(45, 143, 78, 0.15), 0 8px 32px rgba(0,0,0,0.08);
+    }
+
+    /* Category pill */
+    .cat-pill {
+      transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+    }
+    .cat-pill:hover, .cat-pill.active {
+      background: #2D8F4E;
+      color: white;
+      border-color: #2D8F4E;
+    }
+
+    /* Tab button */
+    .tab-btn {
+      transition: color 0.3s ease, border-color 0.3s ease;
+    }
+    .tab-btn.active {
+      color: #111827;
+      border-color: #2D8F4E;
+    }
+
+    /* Scroll reveal */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.8s cubic-bezier(0.23, 1, 0.32, 1), transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .stagger > .reveal:nth-child(1) { transition-delay: 0s; }
+    .stagger > .reveal:nth-child(2) { transition-delay: 0.1s; }
+    .stagger > .reveal:nth-child(3) { transition-delay: 0.2s; }
+
+    /* Mobile nav */
+    .mobile-menu {
+      transform: translateX(100%);
+      transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+    .mobile-menu.open { transform: translateX(0); }
+
+    /* Hero gradient */
+    .shop-hero-gradient {
+      background:
+        radial-gradient(ellipse 80% 60% at 20% 80%, rgba(45, 143, 78, 0.06) 0%, transparent 70%),
+        radial-gradient(ellipse 60% 80% at 80% 20%, rgba(26, 111, 196, 0.05) 0%, transparent 70%),
+        radial-gradient(ellipse 100% 100% at 50% 50%, rgba(243, 244, 246, 1) 0%, rgba(255, 255, 255, 1) 100%);
+    }
+
+    /* Partner logo */
+    .partner-logo {
+      filter: grayscale(1) brightness(1);
+      transition: filter 0.4s ease, transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+    .partner-logo:hover {
+      filter: grayscale(0) brightness(1);
+      transform: scale(1.05);
+    }
+
+    /* Search dropdown */
+    .search-dropdown {
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3), 0 0 0 1px rgba(45,143,78,0.1);
+    }
+
+    /* Category sticky */
+    .cat-strip {
+      transition: box-shadow 0.3s ease;
+    }
+    .cat-strip.stuck {
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ========== NAVIGATION ========== -->
+  <header class="fixed top-0 left-0 right-0 z-50 nav-blur">
+    <nav class="max-w-7xl mx-auto px-6 lg:px-8 flex items-center justify-between h-20">
+      <a href="index.html" class="flex-shrink-0">
+        <img src="brand_assets/omega_logo3_op_1188x325.jpg" alt="Omega Industries of Michigan" class="h-14 w-auto" style="mix-blend-mode: multiply;">
+      </a>
+
+      <!-- Desktop Nav -->
+      <div class="hidden lg:flex items-center gap-10">
+        <a href="index.html" class="nav-link font-display text-sm font-600 tracking-widest uppercase text-alloy hover:text-chrome">Home</a>
+        <a href="powder-coating.html" class="nav-link font-display text-sm font-600 tracking-widest uppercase text-alloy hover:text-chrome">Powder Coating</a>
+        <a href="air-filters.html" class="nav-link font-display text-sm font-600 tracking-widest uppercase text-alloy hover:text-chrome">Air Filters</a>
+        <a href="liquid-finishing.html" class="nav-link font-display text-sm font-600 tracking-widest uppercase text-alloy hover:text-chrome">Liquid Finishing</a>
+        <a href="shop.html" class="nav-link active font-display text-sm font-600 tracking-widest uppercase text-chrome">Shop</a>
+        <a href="index.html#contact" class="nav-link font-display text-sm font-600 tracking-widest uppercase text-alloy hover:text-chrome">Contact</a>
+      </div>
+
+      <!-- Cart + CTA -->
+      <div class="hidden lg:flex items-center gap-4">
+        <button class="snipcart-checkout relative p-2 text-alloy hover:text-chrome transition-colors focus-visible:outline-2 focus-visible:outline-forge rounded-lg" aria-label="Open cart">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
+            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+          </svg>
+          <span class="cart-badge absolute -top-0.5 -right-0.5 w-5 h-5 bg-forge text-white font-display text-[10px] font-700 rounded-full flex items-center justify-center" style="display:none;">0</span>
+        </button>
+        <a href="index.html#contact" class="btn-primary inline-flex items-center gap-2 bg-forge text-white font-display font-700 text-sm tracking-wider uppercase px-6 py-3 rounded-lg">
+          Get a Quote
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <div class="flex lg:hidden items-center gap-3">
+        <button class="snipcart-checkout relative p-2 text-alloy" aria-label="Open cart">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
+            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+          </svg>
+          <span class="cart-badge absolute -top-0.5 -right-0.5 w-5 h-5 bg-forge text-white font-display text-[10px] font-700 rounded-full flex items-center justify-center" style="display:none;">0</span>
+        </button>
+        <button onclick="toggleMenu()" class="flex flex-col gap-1.5 p-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-forge rounded" aria-label="Toggle menu">
+          <span id="bar1" class="block w-6 h-0.5 bg-chrome transition-transform duration-300"></span>
+          <span id="bar2" class="block w-6 h-0.5 bg-chrome transition-opacity duration-300"></span>
+          <span id="bar3" class="block w-6 h-0.5 bg-chrome transition-transform duration-300"></span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Mobile Menu -->
+  <div id="mobileMenu" class="mobile-menu fixed inset-0 z-40 bg-midnight/98 flex flex-col items-center justify-center gap-8">
+    <a href="index.html" onclick="toggleMenu()" class="font-display text-2xl font-700 tracking-widest uppercase text-alloy hover:text-chrome">Home</a>
+    <a href="powder-coating.html" onclick="toggleMenu()" class="font-display text-2xl font-700 tracking-widest uppercase text-alloy hover:text-chrome">Powder Coating</a>
+    <a href="air-filters.html" onclick="toggleMenu()" class="font-display text-2xl font-700 tracking-widest uppercase text-alloy hover:text-chrome">Air Filters</a>
+    <a href="liquid-finishing.html" onclick="toggleMenu()" class="font-display text-2xl font-700 tracking-widest uppercase text-alloy hover:text-chrome">Liquid Finishing</a>
+    <a href="shop.html" onclick="toggleMenu()" class="font-display text-2xl font-700 tracking-widest uppercase text-chrome">Shop</a>
+    <a href="index.html#contact" onclick="toggleMenu()" class="font-display text-2xl font-700 tracking-widest uppercase text-alloy hover:text-chrome">Contact</a>
+  </div>
+
+  <!-- ========== HERO / SEARCH ========== -->
+  <section class="relative pt-32 pb-20 lg:pt-40 lg:pb-28 shop-hero-gradient">
+    <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-forge/40 to-transparent"></div>
+
+    <div class="max-w-4xl mx-auto px-6 lg:px-8 text-center">
+      <span class="inline-block font-display text-xs font-500 tracking-[0.25em] uppercase text-forge mb-4">
+        Search by Part Number or Category
+      </span>
+
+      <h1 class="font-display font-800 uppercase tracking-[-0.03em] text-chrome mb-6" style="font-size: clamp(2.5rem, 7vw, 5rem); line-height: 0.95;">
+        Industrial Equipment<br>Shop
+      </h1>
+
+      <p class="font-body text-alloy text-lg max-w-xl mx-auto mb-10" style="line-height: 1.7;">
+        Browse powder coating, air filtration, and liquid finishing parts. Find exactly what you need by part number or keyword.
+      </p>
+
+      <!-- Search Bar -->
+      <div class="relative max-w-2xl mx-auto">
+        <div class="relative">
+          <svg class="absolute left-5 top-1/2 -translate-y-1/2 text-alloy" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+          </svg>
+          <input
+            type="text"
+            id="shop-search"
+            placeholder="Search by part number, product name, or keyword..."
+            class="search-input w-full pl-14 pr-6 py-5 rounded-xl border border-gunmetal bg-white font-body text-sm text-chrome placeholder:text-rivet"
+            autocomplete="off"
+          >
+        </div>
+        <!-- Search Dropdown -->
+        <div id="search-dropdown" class="search-dropdown hidden absolute top-full left-0 right-0 mt-2 rounded-xl overflow-hidden z-50" style="background: #0A0E14;">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CATEGORY STRIP ========== -->
+  <div class="cat-strip sticky top-20 z-30 bg-midnight border-b border-gunmetal/30">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+      <div class="flex items-center gap-3 py-4 overflow-x-auto no-scrollbar">
+        <a href="shop.html" class="cat-pill active flex-shrink-0 font-display text-xs font-600 tracking-[0.15em] uppercase px-4 py-2 rounded-full border border-forge text-white bg-forge">All</a>
+        <a href="shop-category.html?cat=powder-coating" class="cat-pill flex-shrink-0 font-display text-xs font-600 tracking-[0.15em] uppercase px-4 py-2 rounded-full border border-gunmetal text-alloy">Powder Coating</a>
+        <a href="shop-category.html?cat=air-filters" class="cat-pill flex-shrink-0 font-display text-xs font-600 tracking-[0.15em] uppercase px-4 py-2 rounded-full border border-gunmetal text-alloy">Air Filters</a>
+        <a href="shop-category.html?cat=liquid-finishing" class="cat-pill flex-shrink-0 font-display text-xs font-600 tracking-[0.15em] uppercase px-4 py-2 rounded-full border border-gunmetal text-alloy">Liquid Finishing</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== FEATURED PRODUCTS ========== -->
+  <section class="py-16 lg:py-24 bg-midnight">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+      <!-- Section Header + Tabs -->
+      <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-10">
+        <div>
+          <span class="font-display text-xs font-500 tracking-[0.25em] uppercase text-forge block mb-2">Browse Products</span>
+          <h2 class="font-display font-700 text-2xl lg:text-3xl uppercase tracking-tight text-chrome">Featured Parts & Equipment</h2>
+        </div>
+        <div class="flex gap-1 border-b border-gunmetal/30">
+          <button onclick="filterByTag('popular')" data-tab="popular" class="tab-btn active font-display text-xs font-600 tracking-[0.15em] uppercase px-4 py-2.5 border-b-2 border-forge text-chrome">Popular</button>
+          <button onclick="filterByTag('new')" data-tab="new" class="tab-btn font-display text-xs font-600 tracking-[0.15em] uppercase px-4 py-2.5 border-b-2 border-transparent text-alloy hover:text-chrome">New</button>
+          <button onclick="filterByTag('sale')" data-tab="sale" class="tab-btn font-display text-xs font-600 tracking-[0.15em] uppercase px-4 py-2.5 border-b-2 border-transparent text-alloy hover:text-chrome">On Sale</button>
+          <button onclick="filterByTag('')" data-tab="all" class="tab-btn font-display text-xs font-600 tracking-[0.15em] uppercase px-4 py-2.5 border-b-2 border-transparent text-alloy hover:text-chrome">All</button>
+        </div>
+      </div>
+
+      <!-- Product Grid -->
+      <div id="featured-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 lg:gap-6">
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CATEGORY SHOWCASE ========== -->
+  <section class="py-16 lg:py-24 bg-steel/50">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+      <div class="text-center mb-12 reveal">
+        <span class="font-display text-xs font-500 tracking-[0.25em] uppercase text-forge block mb-2">Shop by Category</span>
+        <h2 class="font-display font-700 text-2xl lg:text-3xl uppercase tracking-tight text-chrome">Three Divisions. One Source.</h2>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6 lg:gap-8 stagger">
+        <!-- Powder Coating -->
+        <a href="shop-category.html?cat=powder-coating" class="product-card group relative block rounded-xl overflow-hidden reveal" style="background: #0A0E14;">
+          <div class="aspect-[4/3] overflow-hidden">
+            <img src="frames/powder/frame_0001.jpg" alt="Powder Coating Equipment" class="card-image w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-t from-[#0A0E14] via-[#0A0E14]/40 to-transparent"></div>
+          </div>
+          <div class="relative p-6 lg:p-8 -mt-16 z-10">
+            <span class="font-display text-[10px] tracking-[0.3em] uppercase text-forge block mb-2">10 Products</span>
+            <h3 class="font-display font-700 text-2xl uppercase tracking-tight text-white mb-2">Powder Coating</h3>
+            <p class="font-body text-gray-400 text-sm leading-relaxed">Guns, nozzles, hoses, parts, and booth filters.</p>
+          </div>
+        </a>
+
+        <!-- Air Filters -->
+        <a href="shop-category.html?cat=air-filters" class="product-card group relative block rounded-xl overflow-hidden reveal" style="background: #0A0E14;">
+          <div class="aspect-[4/3] overflow-hidden">
+            <img src="frames/filters/frame_0001.jpg" alt="Industrial Air Filters" class="card-image w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-t from-[#0A0E14] via-[#0A0E14]/40 to-transparent"></div>
+          </div>
+          <div class="relative p-6 lg:p-8 -mt-16 z-10">
+            <span class="font-display text-[10px] tracking-[0.3em] uppercase text-forge block mb-2">10 Products</span>
+            <h3 class="font-display font-700 text-2xl uppercase tracking-tight text-white mb-2">Air Filters</h3>
+            <p class="font-body text-gray-400 text-sm leading-relaxed">HVAC, HEPA, dust cartridges, and paint booth filters.</p>
+          </div>
+        </a>
+
+        <!-- Liquid Finishing -->
+        <a href="shop-category.html?cat=liquid-finishing" class="product-card group relative block rounded-xl overflow-hidden reveal" style="background: #0A0E14;">
+          <div class="aspect-[4/3] overflow-hidden">
+            <img src="frames/liquid/frame_0001.jpg" alt="Liquid Finishing Equipment" class="card-image w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-t from-[#0A0E14] via-[#0A0E14]/40 to-transparent"></div>
+          </div>
+          <div class="relative p-6 lg:p-8 -mt-16 z-10">
+            <span class="font-display text-[10px] tracking-[0.3em] uppercase text-forge block mb-2">10 Products</span>
+            <h3 class="font-display font-700 text-2xl uppercase tracking-tight text-white mb-2">Liquid Finishing</h3>
+            <p class="font-body text-gray-400 text-sm leading-relaxed">Spray guns, pumps, pressure pots, and accessories.</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CTA BANNER ========== -->
+  <section class="py-16 bg-midnight border-t border-b border-gunmetal/30">
+    <div class="max-w-4xl mx-auto px-6 lg:px-8 text-center">
+      <h2 class="font-display font-700 text-xl lg:text-2xl uppercase tracking-tight text-chrome mb-4">Need Bulk Pricing or Custom Orders?</h2>
+      <p class="font-body text-alloy mb-6">Call us at <a href="tel:6164755500" class="text-forge hover:text-forge-bright font-600">(616) 475-5500</a> or email <a href="mailto:Sales@omegaindustriesmi.com" class="text-forge hover:text-forge-bright font-600">Sales@omegaindustriesmi.com</a></p>
+      <a href="index.html#contact" class="btn-outline inline-flex items-center gap-2 border border-gunmetal text-alloy font-display font-700 text-sm tracking-wider uppercase px-8 py-4 rounded-lg">
+        Request a Quote
+      </a>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="bg-midnight py-16 border-t border-gunmetal/30">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+        <div class="lg:col-span-2">
+          <img src="brand_assets/omega_logo3_op_1188x325.jpg" alt="Omega Industries" class="h-12 w-auto mb-4" style="mix-blend-mode: multiply;">
+          <p class="font-body text-alloy text-sm max-w-md" style="line-height: 1.7;">
+            Any and all filtration and finishing equipment needs under one roof. Serving West Michigan and beyond since 1990.
+          </p>
+        </div>
+        <div>
+          <span class="font-display text-[10px] tracking-[0.25em] uppercase text-alloy block mb-4">Products</span>
+          <ul class="space-y-3">
+            <li><a href="powder-coating.html" class="font-body text-sm text-alloy hover:text-forge transition-colors">Powder Coating</a></li>
+            <li><a href="air-filters.html" class="font-body text-sm text-alloy hover:text-forge transition-colors">Air Filters</a></li>
+            <li><a href="liquid-finishing.html" class="font-body text-sm text-alloy hover:text-forge transition-colors">Liquid Finishing</a></li>
+            <li><a href="shop.html" class="font-body text-sm text-alloy hover:text-forge transition-colors">Shop All</a></li>
+          </ul>
+        </div>
+        <div>
+          <span class="font-display text-[10px] tracking-[0.25em] uppercase text-alloy block mb-4">Contact</span>
+          <ul class="space-y-3">
+            <li><a href="tel:6164755500" class="font-body text-sm text-alloy hover:text-forge transition-colors">(616) 475-5500</a></li>
+            <li><a href="mailto:Sales@omegaindustriesmi.com" class="font-body text-sm text-alloy hover:text-forge transition-colors">Sales@omegaindustriesmi.com</a></li>
+            <li><span class="font-body text-sm text-alloy">3744 Linden Ave SE<br>Grand Rapids, MI 49548</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="border-t border-gunmetal/30 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <span class="font-body text-xs text-rivet">&copy; 2024 Omega Industries of MI, LLC. All rights reserved.</span>
+        <span class="font-body text-xs text-rivet">Fax: (616) 475-5520</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Snipcart -->
+  <div hidden id="snipcart" data-api-key="YTkzNzQ1NWMtNDFjOS00NmJiLTlkNjItMTc5MmNhMzBmYjEzNjM5MTUzMzAxNTkxMDg2NDEz"></div>
+  <script async src="https://cdn.snipcart.com/themes/v3/snipcart.js"></script>
+
+  <!-- Shop Scripts -->
+  <script src="js/products.js"></script>
+  <script src="js/shop.js"></script>
+  <script src="js/cart.js"></script>
+
+  <script>
+    // Mobile menu toggle
+    function toggleMenu() {
+      const menu = document.getElementById('mobileMenu');
+      const bar1 = document.getElementById('bar1');
+      const bar2 = document.getElementById('bar2');
+      const bar3 = document.getElementById('bar3');
+      menu.classList.toggle('open');
+      if (menu.classList.contains('open')) {
+        bar1.style.transform = 'rotate(45deg) translate(4px, 4px)';
+        bar2.style.opacity = '0';
+        bar3.style.transform = 'rotate(-45deg) translate(4px, -4px)';
+        document.body.style.overflow = 'hidden';
+      } else {
+        bar1.style.transform = '';
+        bar2.style.opacity = '';
+        bar3.style.transform = '';
+        document.body.style.overflow = '';
+      }
+    }
+
+    // Scroll reveal
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Initialize search
+    OmegaShop.initSearch('shop-search', 'search-dropdown');
+
+    // Featured products — show popular by default
+    function filterByTag(tag) {
+      // Update tab state
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        const isActive = btn.dataset.tab === (tag || 'all');
+        btn.classList.toggle('active', isActive);
+        btn.classList.toggle('border-forge', isActive);
+        btn.classList.toggle('text-chrome', isActive);
+        btn.classList.toggle('border-transparent', !isActive);
+        btn.classList.toggle('text-alloy', !isActive);
+      });
+
+      let products;
+      if (tag) {
+        products = OmegaShop.filterProducts({ tag: tag });
+        // If no results for tag, show all
+        if (products.length === 0) products = CATALOG.products;
+      } else {
+        products = CATALOG.products;
+      }
+      OmegaShop.renderProductGrid(products, 'featured-grid', 12);
+    }
+
+    // Initial load
+    filterByTag('popular');
+  </script>
+</body>
+</html>
