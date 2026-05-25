@@ -37,9 +37,6 @@
     }
   </script>
 
-  <!-- Snipcart -->
-  <link rel="preconnect" href="https://app.snipcart.com">
-  <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.0/default/snipcart.css" />
 
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -247,7 +244,7 @@
 
       <!-- Cart + CTA -->
       <div class="hidden lg:flex items-center gap-4">
-        <button class="snipcart-checkout relative p-2 text-alloy hover:text-chrome transition-colors focus-visible:outline-2 focus-visible:outline-forge rounded-lg" aria-label="Open cart">
+        <button onclick="OmegaCart.openDrawer()" class=" relative p-2 text-alloy hover:text-chrome transition-colors focus-visible:outline-2 focus-visible:outline-forge rounded-lg" aria-label="Open cart">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
             <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
@@ -262,7 +259,7 @@
 
       <!-- Mobile Menu Button -->
       <div class="flex lg:hidden items-center gap-3">
-        <button class="snipcart-checkout relative p-2 text-alloy" aria-label="Open cart">
+        <button onclick="OmegaCart.openDrawer()" class=" relative p-2 text-alloy" aria-label="Open cart">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
             <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
@@ -457,10 +454,6 @@
       </div>
     </div>
   </footer>
-
-  <!-- Snipcart -->
-  <div hidden id="snipcart" data-api-key="YTkzNzQ1NWMtNDFjOS00NmJiLTlkNjItMTc5MmNhMzBmYjEzNjM5MTUzMzAxNTkxMDg2NDEz" data-config-add-product-behavior="none"></div>
-  <script async src="https://cdn.snipcart.com/themes/v3.0/default/snipcart.js"></script>
 
   <!-- Shop Scripts -->
   <script src="js/products.js"></script>

@@ -37,15 +37,8 @@ const OmegaShop = {
             <span class="font-display text-[10px] text-gray-500 tracking-wider uppercase">/${product.unit}</span>
           </div>
           <button
-            onclick="event.preventDefault();"
-            class="snipcart-add-item w-full bg-forge hover:bg-forge-bright text-white font-display text-xs font-700 tracking-wider uppercase py-2.5 px-4 rounded-lg transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-forge focus-visible:outline-offset-2"
-            data-item-id="${product.id}"
-            data-item-price="${product.price.toFixed(2)}"
-            data-item-url="/products-validate.html"
-            data-item-name="${product.name}"
-            data-item-description="${product.partNumber} — ${product.brand}"
-            data-item-image="${product.image}"
-            data-item-quantity="1">
+            onclick="event.preventDefault(); OmegaCart.addItem({id:'${product.id}',name:'${product.name.replace(/'/g, "\\'")}',partNumber:'${product.partNumber}',price:${product.price},image:'${product.image}'});"
+            class="add-to-cart-btn w-full bg-forge hover:bg-forge-bright text-white font-display text-xs font-700 tracking-wider uppercase py-2.5 px-4 rounded-lg transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-forge focus-visible:outline-offset-2">
             Add to Cart
           </button>
         </div>
@@ -414,15 +407,8 @@ const OmegaShop = {
                       class="px-3 py-3 text-chrome hover:bg-steel transition-colors font-display text-lg focus-visible:outline-2 focus-visible:outline-forge">+</button>
             </div>
             <button
-              class="snipcart-add-item flex-1 btn-primary flex items-center justify-center gap-2 bg-forge text-white font-display font-700 text-sm tracking-wider uppercase py-3 px-6 rounded-lg"
-              data-item-id="${product.id}"
-              data-item-price="${product.price.toFixed(2)}"
-              data-item-url="/products-validate.html"
-              data-item-name="${product.name}"
-              data-item-description="${product.partNumber} — ${product.brand}"
-              data-item-image="${product.image}"
-              data-item-quantity="1"
-              onclick="this.setAttribute('data-item-quantity', document.getElementById('qty-input').value);">
+              class="flex-1 btn-primary flex items-center justify-center gap-2 bg-forge text-white font-display font-700 text-sm tracking-wider uppercase py-3 px-6 rounded-lg"
+              onclick="OmegaCart.addItem({id:'${product.id}',name:'${product.name.replace(/'/g, "\\'")}',partNumber:'${product.partNumber}',price:${product.price},image:'${product.image}'}, parseInt(document.getElementById('qty-input').value) || 1);">
               Add to Cart
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
             </button>
