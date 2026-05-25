@@ -40,7 +40,7 @@ const OmegaShop = {
             onclick="event.preventDefault();"
             class="snipcart-add-item w-full bg-forge hover:bg-forge-bright text-white font-display text-xs font-700 tracking-wider uppercase py-2.5 px-4 rounded-lg transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-forge focus-visible:outline-offset-2"
             data-item-id="${product.id}"
-            data-item-price="${product.price}"
+            data-item-price="${product.price.toFixed(2)}"
             data-item-url="/products-validate.html"
             data-item-name="${product.name}"
             data-item-description="${product.partNumber} — ${product.brand}"
@@ -416,7 +416,7 @@ const OmegaShop = {
             <button
               class="snipcart-add-item flex-1 btn-primary flex items-center justify-center gap-2 bg-forge text-white font-display font-700 text-sm tracking-wider uppercase py-3 px-6 rounded-lg"
               data-item-id="${product.id}"
-              data-item-price="${product.price}"
+              data-item-price="${product.price.toFixed(2)}"
               data-item-url="/products-validate.html"
               data-item-name="${product.name}"
               data-item-description="${product.partNumber} — ${product.brand}"
