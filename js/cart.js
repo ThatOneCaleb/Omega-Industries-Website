@@ -10,6 +10,7 @@ const OmegaCart = {
    */
   init() {
     this.updateBadge();
+    this.initToast();
 
     // Listen for Snipcart ready event
     document.addEventListener('snipcart.ready', () => {
@@ -17,7 +18,50 @@ const OmegaCart = {
         this.updateBadge();
       });
       this.updateBadge();
+
+      // Listen for item added to show toast
+      Snipcart.events.on('item.added', (item) => {
+        this.showToast(item.name);
+      });
     });
+  },
+
+  /**
+   * Create toast container
+   */
+  initToast() {
+    if (document.getElementById('cart-toast')) return;
+    const toast = document.createElement('div');
+    toast.id = 'cart-toast';
+    toast.style.cssText = 'position:fixed;bottom:24px;right:24px;z-index:10000;pointer-events:none;display:flex;flex-direction:column;gap:8px;align-items:flex-end;';
+    document.body.appendChild(toast);
+  },
+
+  /**
+   * Show a toast notification when item added to cart
+   */
+  showToast(productName) {
+    const container = document.getElementById('cart-toast');
+    if (!container) return;
+
+    const toast = document.createElement('div');
+    toast.style.cssText = 'pointer-events:auto;display:flex;align-items:center;gap:10px;background:#0A0E14;border:1px solid rgba(45,143,78,0.4);border-radius:12px;padding:12px 18px;box-shadow:0 8px 32px rgba(0,0,0,0.3);transform:translateX(120%);transition:transform 0.4s cubic-bezier(0.23,1,0.32,1),opacity 0.3s;opacity:0;max-width:320px;';
+    toast.innerHTML = `
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2D8F4E" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+      <span style="font-family:'DM Sans',sans-serif;font-size:13px;color:#fff;"><strong style="color:#2D8F4E;">Added</strong> ${productName.length > 30 ? productName.slice(0, 30) + '…' : productName}</span>
+    `;
+    container.appendChild(toast);
+
+    requestAnimationFrame(() => {
+      toast.style.transform = 'translateX(0)';
+      toast.style.opacity = '1';
+    });
+
+    setTimeout(() => {
+      toast.style.transform = 'translateX(120%)';
+      toast.style.opacity = '0';
+      setTimeout(() => toast.remove(), 400);
+    }, 3000);
   },
 
   /**

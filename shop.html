@@ -205,6 +205,17 @@
     .search-dropdown {
       box-shadow: 0 20px 60px rgba(0,0,0,0.3), 0 0 0 1px rgba(45,143,78,0.1);
     }
+    @media (max-width: 640px) {
+      .search-dropdown {
+        position: fixed;
+        left: 12px;
+        right: 12px;
+        top: auto;
+        max-height: 60vh;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+      }
+    }
 
     /* Category sticky */
     .cat-strip {
@@ -505,10 +516,11 @@
         products = OmegaShop.filterProducts({ tag: tag });
         // If no results for tag, show all
         if (products.length === 0) products = CATALOG.products;
+        OmegaShop.renderProductGrid(products, 'featured-grid', 12);
       } else {
         products = CATALOG.products;
+        OmegaShop.renderProductGrid(products, 'featured-grid');
       }
-      OmegaShop.renderProductGrid(products, 'featured-grid', 12);
     }
 
     // Initial load

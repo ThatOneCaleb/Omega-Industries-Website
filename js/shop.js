@@ -432,17 +432,22 @@ const OmegaShop = {
         </div>
       </div>
 
-      <!-- Tabs: Specs + Related -->
+      <!-- Tabs: Specs + Reviews + Related -->
       <div class="mb-20">
-        <div class="flex gap-1 border-b border-gunmetal/30 mb-8" id="product-tabs">
-          <button onclick="OmegaShop.switchTab('specs')" data-tab="specs" class="product-tab font-display text-xs font-600 tracking-[0.2em] uppercase px-6 py-3 border-b-2 border-forge text-chrome">Specifications</button>
-          <button onclick="OmegaShop.switchTab('related')" data-tab="related" class="product-tab font-display text-xs font-600 tracking-[0.2em] uppercase px-6 py-3 border-b-2 border-transparent text-alloy hover:text-chrome transition-colors">Related Products</button>
+        <div class="flex gap-1 border-b border-gunmetal/30 mb-8 overflow-x-auto no-scrollbar" id="product-tabs">
+          <button onclick="OmegaShop.switchTab('specs')" data-tab="specs" class="product-tab flex-shrink-0 font-display text-xs font-600 tracking-[0.2em] uppercase px-6 py-3 border-b-2 border-forge text-chrome">Specifications</button>
+          <button onclick="OmegaShop.switchTab('reviews')" data-tab="reviews" class="product-tab flex-shrink-0 font-display text-xs font-600 tracking-[0.2em] uppercase px-6 py-3 border-b-2 border-transparent text-alloy hover:text-chrome transition-colors">Reviews</button>
+          <button onclick="OmegaShop.switchTab('related')" data-tab="related" class="product-tab flex-shrink-0 font-display text-xs font-600 tracking-[0.2em] uppercase px-6 py-3 border-b-2 border-transparent text-alloy hover:text-chrome transition-colors">Related Products</button>
         </div>
 
         <div id="tab-specs">
           <table class="w-full max-w-xl">
             <tbody>${specsHtml}</tbody>
           </table>
+        </div>
+
+        <div id="tab-reviews" class="hidden">
+          ${this.renderReviews(product.id)}
         </div>
 
         <div id="tab-related" class="hidden">
@@ -474,6 +479,184 @@ const OmegaShop = {
     document.querySelectorAll('[id^="tab-"]').forEach(panel => {
       panel.classList.toggle('hidden', panel.id !== `tab-${tabName}`);
     });
+  },
+
+
+  // ========================
+  // REVIEWS
+  // ========================
+
+  // Sample reviews data
+  reviews: {
+    'pc-001': [
+      { name: 'Mike R.', rating: 5, date: '2024-11-15', title: 'Rock solid gun', text: 'Been running this in our shop for 6 months now. Consistent finish every time, great transfer efficiency. Worth every penny.' },
+      { name: 'Dave S.', rating: 5, date: '2024-10-02', title: 'Best powder gun we\'ve owned', text: 'Upgraded from an older Wagner model. The difference in charging is night and day. Pattern control is excellent.' },
+      { name: 'Jim T.', rating: 4, date: '2024-08-20', title: 'Great gun, pricey', text: 'Quality is top notch as expected from Wagner. Only knock is the price but you get what you pay for in this industry.' },
+    ],
+    'pc-005': [
+      { name: 'Steve K.', rating: 5, date: '2024-12-01', title: 'OEM quality', text: 'Exact fit replacement. We go through these every few months and Omega always has them in stock and ships fast.' },
+      { name: 'Carlos M.', rating: 5, date: '2024-09-14', title: 'Perfect', text: 'Genuine tungsten carbide pins. Arc is consistent and they last way longer than the knockoffs we tried before.' },
+    ],
+    'af-001': [
+      { name: 'Brian L.', rating: 5, date: '2025-01-10', title: 'Great price for quality filters', text: 'We buy these in bulk for our warehouse. Good airflow, solid construction, and Omega\'s pricing can\'t be beat.' },
+      { name: 'Tom W.', rating: 4, date: '2024-11-22', title: 'Standard quality', text: 'Does exactly what it should. MERV 8 performance is solid. We replace monthly and these hold up well.' },
+    ],
+    'af-003': [
+      { name: 'Dr. Sarah P.', rating: 5, date: '2025-02-05', title: 'Critical application approved', text: 'Using these in our cleanroom. True HEPA performance verified with our particle counter. Excellent seal.' },
+      { name: 'Mark H.', rating: 5, date: '2024-12-18', title: 'Premium quality HEPA', text: 'Donaldson makes a great product. No bypass leakage, gasket seals perfectly. Worth the investment for our paint line.' },
+    ],
+    'lf-001': [
+      { name: 'Randy F.', rating: 5, date: '2025-01-28', title: 'Incredible atomization', text: 'The finish quality from this gun is outstanding. Fine atomization, minimal overspray. We\'re getting 70%+ TE on flat panels.' },
+      { name: 'Jeff B.', rating: 4, date: '2024-10-30', title: 'Very good HVLP', text: 'Great for basecoats and clears. Cup size is perfect for our batch work. Only wish it came with a 1.4mm setup too.' },
+      { name: 'Paul N.', rating: 5, date: '2024-09-08', title: 'Professional grade', text: 'After trying several cheaper alternatives, this is the one to buy. Balance and trigger feel are excellent for all-day spraying.' },
+    ],
+    'lf-004': [
+      { name: 'Tony G.', rating: 5, date: '2025-03-01', title: 'Built like a tank', text: 'ASME coded, agitator works great, regulator holds steady. Been running this daily for a year with zero issues.' },
+      { name: 'Chris D.', rating: 4, date: '2024-11-05', title: 'Solid pressure pot', text: 'Good build quality. Only suggestion would be a sight glass for fluid level. Otherwise works exactly as needed.' },
+    ],
+  },
+
+  /**
+   * Render reviews section for a product
+   */
+  renderReviews(productId) {
+    const stored = JSON.parse(localStorage.getItem('omega-reviews') || '{}');
+    const productReviews = [...(this.reviews[productId] || []), ...(stored[productId] || [])];
+
+    const stars = (rating) => {
+      return Array.from({length: 5}, (_, i) =>
+        `<svg width="14" height="14" viewBox="0 0 24 24" fill="${i < rating ? '#2D8F4E' : 'none'}" stroke="${i < rating ? '#2D8F4E' : '#6B7280'}" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>`
+      ).join('');
+    };
+
+    if (productReviews.length === 0) {
+      return `
+        <div class="max-w-2xl">
+          <div class="text-center py-12">
+            <svg class="mx-auto mb-4" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#6B7280" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+            </svg>
+            <p class="font-display font-600 text-sm uppercase tracking-wider text-chrome mb-2">No Reviews Yet</p>
+            <p class="font-body text-sm text-alloy mb-6">Be the first to review this product.</p>
+            <button onclick="OmegaShop.toggleReviewForm()" class="btn-primary inline-flex items-center gap-2 bg-forge text-white font-display font-700 text-xs tracking-wider uppercase px-6 py-3 rounded-lg">
+              Write a Review
+            </button>
+          </div>
+          <div id="review-form-container" class="hidden"></div>
+        </div>
+      `;
+    }
+
+    const avgRating = (productReviews.reduce((sum, r) => sum + r.rating, 0) / productReviews.length).toFixed(1);
+
+    return `
+      <div class="max-w-2xl">
+        <!-- Summary -->
+        <div class="flex items-center gap-4 mb-8 pb-6 border-b border-gunmetal/30">
+          <div class="text-center">
+            <span class="font-display font-800 text-3xl text-chrome">${avgRating}</span>
+            <div class="flex items-center gap-0.5 mt-1">${stars(Math.round(avgRating))}</div>
+          </div>
+          <div class="flex-1">
+            <p class="font-body text-sm text-alloy">${productReviews.length} review${productReviews.length > 1 ? 's' : ''}</p>
+          </div>
+          <button onclick="OmegaShop.toggleReviewForm()" class="btn-primary inline-flex items-center gap-2 bg-forge text-white font-display font-700 text-xs tracking-wider uppercase px-5 py-2.5 rounded-lg">
+            Write a Review
+          </button>
+        </div>
+
+        <!-- Review Form (hidden by default) -->
+        <div id="review-form-container" class="hidden mb-8 p-6 rounded-xl border border-gunmetal/30 bg-steel/30">
+          <h3 class="font-display font-700 text-sm uppercase tracking-wider text-chrome mb-4">Write Your Review</h3>
+          <form onsubmit="OmegaShop.submitReview(event, '${productId}')">
+            <div class="grid sm:grid-cols-2 gap-4 mb-4">
+              <input type="text" placeholder="Your Name" required class="w-full px-4 py-3 rounded-lg border border-gunmetal bg-white font-body text-sm text-chrome placeholder:text-rivet focus:outline-none focus:border-forge">
+              <div class="flex items-center gap-1">
+                <span class="font-display text-xs tracking-wider uppercase text-alloy mr-2">Rating:</span>
+                <button type="button" onclick="OmegaShop.setRating(1)" class="review-star" data-star="1"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#6B7280" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></button>
+                <button type="button" onclick="OmegaShop.setRating(2)" class="review-star" data-star="2"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#6B7280" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></button>
+                <button type="button" onclick="OmegaShop.setRating(3)" class="review-star" data-star="3"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#6B7280" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></button>
+                <button type="button" onclick="OmegaShop.setRating(4)" class="review-star" data-star="4"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#6B7280" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></button>
+                <button type="button" onclick="OmegaShop.setRating(5)" class="review-star" data-star="5"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#6B7280" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></button>
+                <input type="hidden" id="review-rating" value="5">
+              </div>
+            </div>
+            <input type="text" placeholder="Review Title" required class="w-full px-4 py-3 mb-4 rounded-lg border border-gunmetal bg-white font-body text-sm text-chrome placeholder:text-rivet focus:outline-none focus:border-forge">
+            <textarea placeholder="Share your experience with this product..." required rows="4" class="w-full px-4 py-3 mb-4 rounded-lg border border-gunmetal bg-white font-body text-sm text-chrome placeholder:text-rivet focus:outline-none focus:border-forge resize-none"></textarea>
+            <button type="submit" class="btn-primary inline-flex items-center gap-2 bg-forge text-white font-display font-700 text-xs tracking-wider uppercase px-6 py-3 rounded-lg">
+              Submit Review
+            </button>
+          </form>
+        </div>
+
+        <!-- Reviews List -->
+        <div class="space-y-6">
+          ${productReviews.map(r => `
+            <div class="pb-6 border-b border-gunmetal/20 last:border-0">
+              <div class="flex items-center justify-between mb-2">
+                <div class="flex items-center gap-3">
+                  <div class="w-8 h-8 rounded-full bg-forge/10 flex items-center justify-center">
+                    <span class="font-display text-xs font-700 text-forge">${r.name.charAt(0)}</span>
+                  </div>
+                  <span class="font-display text-xs font-600 tracking-wider uppercase text-chrome">${r.name}</span>
+                </div>
+                <span class="font-body text-[11px] text-rivet">${new Date(r.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
+              </div>
+              <div class="flex items-center gap-2 mb-2">
+                <div class="flex items-center gap-0.5">${stars(r.rating)}</div>
+                <span class="font-display text-xs font-600 uppercase tracking-wider text-chrome">${r.title}</span>
+              </div>
+              <p class="font-body text-sm text-alloy leading-relaxed">${r.text}</p>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+    `;
+  },
+
+  selectedRating: 5,
+
+  toggleReviewForm() {
+    const container = document.getElementById('review-form-container');
+    if (container) container.classList.toggle('hidden');
+  },
+
+  setRating(rating) {
+    this.selectedRating = rating;
+    document.getElementById('review-rating').value = rating;
+    document.querySelectorAll('.review-star').forEach(btn => {
+      const star = parseInt(btn.dataset.star);
+      const svg = btn.querySelector('svg polygon');
+      if (star <= rating) {
+        svg.setAttribute('fill', '#2D8F4E');
+        svg.setAttribute('stroke', '#2D8F4E');
+      } else {
+        svg.setAttribute('fill', 'none');
+        svg.setAttribute('stroke', '#6B7280');
+      }
+    });
+  },
+
+  submitReview(event, productId) {
+    event.preventDefault();
+    const form = event.target;
+    const name = form.querySelector('input[type="text"]').value;
+    const rating = parseInt(document.getElementById('review-rating').value);
+    const title = form.querySelectorAll('input[type="text"]')[1].value;
+    const text = form.querySelector('textarea').value;
+
+    // Store in localStorage
+    const stored = JSON.parse(localStorage.getItem('omega-reviews') || '{}');
+    if (!stored[productId]) stored[productId] = [];
+    stored[productId].push({ name, rating, date: new Date().toISOString().split('T')[0], title, text });
+    localStorage.setItem('omega-reviews', JSON.stringify(stored));
+
+    // Show success and reload reviews
+    this.toggleReviewForm();
+    OmegaCart.showToast('Review submitted! Thank you.');
+
+    // Reload product detail to show new review
+    setTimeout(() => this.loadProductDetail('product-detail'), 300);
   },
 
 
