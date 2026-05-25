@@ -315,29 +315,29 @@ const OmegaCart = {
     const container = document.getElementById(containerId);
     if (!container) return;
 
+    // Check for success/cancel status FIRST (before reading cart)
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('success') === 'true') {
+      this.clearCart();
+      container.innerHTML = `
+        <div class="text-center py-20">
+          <svg class="mx-auto mb-6" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#2D8F4E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 6L9 17l-5-5"/>
+          </svg>
+          <h2 class="font-display font-700 text-2xl uppercase tracking-tight text-chrome mb-3">Order Confirmed!</h2>
+          <p class="font-body text-alloy mb-8">Thank you for your purchase. You'll receive a confirmation email shortly.</p>
+          <a href="shop.html" class="btn-primary inline-flex items-center gap-2 bg-forge text-white font-display font-700 text-sm tracking-wider uppercase px-8 py-4 rounded-lg">
+            Continue Shopping
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      `;
+      return;
+    }
+
     const cart = this.getCart();
 
     if (cart.length === 0) {
-      // Check for success/cancel status
-      const params = new URLSearchParams(window.location.search);
-      if (params.get('success') === 'true') {
-        this.clearCart();
-        container.innerHTML = `
-          <div class="text-center py-20">
-            <svg class="mx-auto mb-6" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#2D8F4E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M20 6L9 17l-5-5"/>
-            </svg>
-            <h2 class="font-display font-700 text-2xl uppercase tracking-tight text-chrome mb-3">Order Confirmed!</h2>
-            <p class="font-body text-alloy mb-8">Thank you for your purchase. You'll receive a confirmation email shortly.</p>
-            <a href="shop.html" class="btn-primary inline-flex items-center gap-2 bg-forge text-white font-display font-700 text-sm tracking-wider uppercase px-8 py-4 rounded-lg">
-              Continue Shopping
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            </a>
-          </div>
-        `;
-        return;
-      }
-
       container.innerHTML = `
         <div class="text-center py-20">
           <svg class="mx-auto mb-6" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" style="color: #6B7280;">
