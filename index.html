@@ -279,8 +279,8 @@
       transition: border-color 0.4s ease, box-shadow 0.4s ease;
     }
     .pixel-card:hover {
-      border-color: rgba(45,143,78,0.4);
-      box-shadow: 0 4px 24px rgba(45,143,78,0.08);
+      border-color: var(--brand-color, rgba(45,143,78,0.4));
+      box-shadow: 0 4px 24px color-mix(in srgb, var(--brand-color, #111827) 15%, transparent);
     }
     .pixel-card canvas {
       position: absolute;
@@ -301,7 +301,7 @@
       transition: color 0.3s ease;
     }
     .pixel-card:hover .logo-text {
-      color: #2D8F4E;
+      color: var(--brand-color, #111827);
     }
 
     /* Stat counter glow */
@@ -671,31 +671,31 @@
       </div>
 
       <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 stagger">
-        <div class="pixel-card reveal" data-colors='["#2D8F4E","#38B261","#1a6fc4"]'>
+        <div class="pixel-card reveal" data-colors='["#006a7a","#ffcb00","#ED1C24"]'>
           <canvas></canvas>
           <span class="logo-text">Wagner</span>
         </div>
-        <div class="pixel-card reveal" data-colors='["#C94A1A","#E05A2A","#FF7040"]'>
+        <div class="pixel-card reveal" data-colors='["#D91433","#FFCC00","#000000"]'>
           <canvas></canvas>
           <span class="logo-text">Fanuc</span>
         </div>
-        <div class="pixel-card reveal" data-colors='["#1a6fc4","#2D8F4E","#38B261"]'>
+        <div class="pixel-card reveal" data-colors='["#003366","#0055A4","#1a1a2e"]'>
           <canvas></canvas>
           <span class="logo-text">Koch</span>
         </div>
-        <div class="pixel-card reveal" data-colors='["#2D8F4E","#111827","#4B5563"]'>
+        <div class="pixel-card reveal" data-colors='["#0181C6","#F25E20","#4F626E"]'>
           <canvas></canvas>
           <span class="logo-text">Donaldson</span>
         </div>
-        <div class="pixel-card reveal" data-colors='["#1a6fc4","#2D8F4E","#6B7280"]'>
+        <div class="pixel-card reveal" data-colors='["#005DAA","#F47920","#003B6F"]'>
           <canvas></canvas>
           <span class="logo-text">GFS</span>
         </div>
-        <div class="pixel-card reveal" data-colors='["#111827","#4B5563","#2D8F4E"]'>
+        <div class="pixel-card reveal" data-colors='["#00468E","#00152A","#0066CC"]'>
           <canvas></canvas>
           <span class="logo-text">D&uuml;rr</span>
         </div>
-        <div class="pixel-card reveal" data-colors='["#C94A1A","#111827","#E05A2A"]'>
+        <div class="pixel-card reveal" data-colors='["#8B1A1A","#CC2222","#1a1a1a"]'>
           <canvas></canvas>
           <span class="logo-text">CAT Pumps</span>
         </div>
@@ -997,7 +997,8 @@
       document.querySelectorAll('.pixel-card').forEach(card => {
         const canvas = card.querySelector('canvas');
         const ctx = canvas.getContext('2d');
-        const colors = JSON.parse(card.dataset.colors || '["#2D8F4E"]');
+        const colors = JSON.parse(card.dataset.colors || '["#111827"]');
+        card.style.setProperty('--brand-color', colors[0]);
         let pixels = [];
         let animId = 0;
         let lastFrame = performance.now();
