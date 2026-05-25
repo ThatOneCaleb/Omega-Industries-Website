@@ -265,6 +265,45 @@
       transform: scale(1.05);
     }
 
+    /* Pixel logo grid */
+    .pixel-card {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100px;
+      border-radius: 12px;
+      border: 1px solid rgba(209,213,219,0.3);
+      background: #FAFAFA;
+      overflow: hidden;
+      transition: border-color 0.4s ease, box-shadow 0.4s ease;
+    }
+    .pixel-card:hover {
+      border-color: rgba(45,143,78,0.4);
+      box-shadow: 0 4px 24px rgba(45,143,78,0.08);
+    }
+    .pixel-card canvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
+    .pixel-card .logo-text {
+      position: relative;
+      z-index: 2;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 1.25rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: #111827;
+      transition: color 0.3s ease;
+    }
+    .pixel-card:hover .logo-text {
+      color: #2D8F4E;
+    }
+
     /* Stat counter glow */
     .stat-value {
       background: linear-gradient(180deg, #111827 0%, #6B7280 100%);
@@ -631,27 +670,34 @@
         </h2>
       </div>
 
-      <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-8 items-center justify-items-center stagger">
-        <div class="partner-logo flex items-center justify-center h-16 reveal">
-          <span class="font-display font-700 text-lg tracking-wider uppercase text-chrome/60">Wagner</span>
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 stagger">
+        <div class="pixel-card reveal" data-colors='["#2D8F4E","#38B261","#1a6fc4"]'>
+          <canvas></canvas>
+          <span class="logo-text">Wagner</span>
         </div>
-        <div class="partner-logo flex items-center justify-center h-16 reveal">
-          <span class="font-display font-700 text-lg tracking-wider uppercase text-chrome/60">Fanuc</span>
+        <div class="pixel-card reveal" data-colors='["#C94A1A","#E05A2A","#FF7040"]'>
+          <canvas></canvas>
+          <span class="logo-text">Fanuc</span>
         </div>
-        <div class="partner-logo flex items-center justify-center h-16 reveal">
-          <span class="font-display font-700 text-lg tracking-wider uppercase text-chrome/60">Koch</span>
+        <div class="pixel-card reveal" data-colors='["#1a6fc4","#2D8F4E","#38B261"]'>
+          <canvas></canvas>
+          <span class="logo-text">Koch</span>
         </div>
-        <div class="partner-logo flex items-center justify-center h-16 reveal">
-          <span class="font-display font-700 text-lg tracking-wider uppercase text-chrome/60">Donaldson</span>
+        <div class="pixel-card reveal" data-colors='["#2D8F4E","#111827","#4B5563"]'>
+          <canvas></canvas>
+          <span class="logo-text">Donaldson</span>
         </div>
-        <div class="partner-logo flex items-center justify-center h-16 reveal">
-          <span class="font-display font-700 text-lg tracking-wider uppercase text-chrome/60">GFS</span>
+        <div class="pixel-card reveal" data-colors='["#1a6fc4","#2D8F4E","#6B7280"]'>
+          <canvas></canvas>
+          <span class="logo-text">GFS</span>
         </div>
-        <div class="partner-logo flex items-center justify-center h-16 reveal">
-          <span class="font-display font-700 text-lg tracking-wider uppercase text-chrome/60">D&uuml;rr</span>
+        <div class="pixel-card reveal" data-colors='["#111827","#4B5563","#2D8F4E"]'>
+          <canvas></canvas>
+          <span class="logo-text">D&uuml;rr</span>
         </div>
-        <div class="partner-logo flex items-center justify-center h-16 reveal">
-          <span class="font-display font-700 text-lg tracking-wider uppercase text-chrome/60">CAT</span>
+        <div class="pixel-card reveal" data-colors='["#C94A1A","#111827","#E05A2A"]'>
+          <canvas></canvas>
+          <span class="logo-text">CAT Pumps</span>
         </div>
       </div>
     </div>
@@ -901,6 +947,98 @@
     }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
 
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Pixel canvas animation for partner cards
+    (function() {
+      const GAP = 6;
+      const SPEED = 0.03;
+      const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      function createPixel(ctx, canvas, x, y, color, delay) {
+        const rand = (min, max) => Math.random() * (max - min) + min;
+        const speed = rand(0.1, 0.9) * SPEED;
+        const p = {
+          x, y, color, size: 0,
+          sizeStep: Math.random() * 0.4,
+          minSize: 0.5,
+          maxSizeInt: 2,
+          maxSize: rand(0.5, 2),
+          delay: reducedMotion ? 0 : delay,
+          counter: 0,
+          counterStep: Math.random() * 4 + (canvas.width + canvas.height) * 0.01,
+          isIdle: false, isReverse: false, isShimmer: false,
+          speed,
+          draw() {
+            const off = p.maxSizeInt * 0.5 - p.size * 0.5;
+            ctx.fillStyle = p.color;
+            ctx.fillRect(p.x + off, p.y + off, p.size, p.size);
+          },
+          appear() {
+            p.isIdle = false;
+            if (p.counter <= p.delay) { p.counter += p.counterStep; return; }
+            if (p.size >= p.maxSize) p.isShimmer = true;
+            if (p.isShimmer) p.shimmer(); else p.size += p.sizeStep;
+            p.draw();
+          },
+          disappear() {
+            p.isShimmer = false; p.counter = 0;
+            if (p.size <= 0) { p.isIdle = true; return; }
+            p.size -= 0.1; p.draw();
+          },
+          shimmer() {
+            if (p.size >= p.maxSize) p.isReverse = true;
+            else if (p.size <= p.minSize) p.isReverse = false;
+            if (p.isReverse) p.size -= speed; else p.size += speed;
+          }
+        };
+        return p;
+      }
+
+      document.querySelectorAll('.pixel-card').forEach(card => {
+        const canvas = card.querySelector('canvas');
+        const ctx = canvas.getContext('2d');
+        const colors = JSON.parse(card.dataset.colors || '["#2D8F4E"]');
+        let pixels = [];
+        let animId = 0;
+        let lastFrame = performance.now();
+
+        function init() {
+          const { width, height } = card.getBoundingClientRect();
+          const w = Math.floor(width), h = Math.floor(height);
+          canvas.width = w; canvas.height = h;
+          pixels = [];
+          for (let x = 0; x < w; x += GAP) {
+            for (let y = 0; y < h; y += GAP) {
+              const color = colors[Math.floor(Math.random() * colors.length)];
+              const dx = x - w / 2, dy = y - h / 2;
+              const delay = reducedMotion ? 0 : Math.sqrt(dx * dx + dy * dy);
+              pixels.push(createPixel(ctx, canvas, x, y, color, delay));
+            }
+          }
+        }
+
+        function animate(mode) {
+          cancelAnimationFrame(animId);
+          const interval = 1000 / 60;
+          function loop() {
+            animId = requestAnimationFrame(loop);
+            const now = performance.now();
+            if (now - lastFrame < interval) return;
+            lastFrame = now;
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (const px of pixels) px[mode]();
+            if (pixels.every(px => px.isIdle)) cancelAnimationFrame(animId);
+          }
+          animId = requestAnimationFrame(loop);
+        }
+
+        init();
+        const ro = new ResizeObserver(() => init());
+        ro.observe(card);
+        card.addEventListener('mouseenter', () => animate('appear'));
+        card.addEventListener('mouseleave', () => animate('disappear'));
+      });
+    })();
   </script>
 </body>
 </html>
