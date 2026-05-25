@@ -191,12 +191,11 @@ const OmegaCart = {
   },
 
   renderCartDrawer() {
-    const container = document.getElementById('cart-drawer-content');
-    if (!container) return;
+    const drawer = document.getElementById('cart-drawer');
+    if (!drawer) return;
 
     const cart = this.getCart();
     const total = this.getTotal();
-    const drawer = document.getElementById('cart-drawer');
 
     if (cart.length === 0) {
       drawer.innerHTML = `
