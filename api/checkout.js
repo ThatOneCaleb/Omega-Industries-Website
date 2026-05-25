@@ -109,6 +109,12 @@ module.exports = async (req, res) => {
         },
       ],
       automatic_tax: { enabled: false },
+      metadata: {
+        order_summary: items.map(item => {
+          const product = PRODUCTS[item.id];
+          return `${item.quantity}x ${product.name} (${item.id})`;
+        }).join(' | '),
+      },
     });
 
     res.status(200).json({ url: session.url });
