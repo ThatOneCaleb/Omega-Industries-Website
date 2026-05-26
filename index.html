@@ -92,11 +92,11 @@
     "brand": [
       {"@type": "Brand", "name": "Wagner"},
       {"@type": "Brand", "name": "Fanuc"},
-      {"@type": "Brand", "name": "GFS"},
-      {"@type": "Brand", "name": "Donaldson"},
-      {"@type": "Brand", "name": "Koch"},
-      {"@type": "Brand", "name": "Durr"},
-      {"@type": "Brand", "name": "CAT"}
+      {"@type": "Brand", "name": "Global Finishing Solutions"},
+      {"@type": "Brand", "name": "Donaldson Torit"},
+      {"@type": "Brand", "name": "Koch Filter"},
+      {"@type": "Brand", "name": "Dürr"},
+      {"@type": "Brand", "name": "C.A. Technologies"}
     ],
     "sameAs": []
   }
@@ -302,6 +302,18 @@
     }
     .pixel-card:hover .logo-text {
       color: var(--brand-color, #111827);
+    }
+    .pixel-card .logo-img {
+      position: relative;
+      z-index: 2;
+      max-height: 55px;
+      max-width: 80%;
+      width: auto;
+      object-fit: contain;
+      transition: transform 0.3s ease;
+    }
+    .pixel-card:hover .logo-img {
+      transform: scale(1.05);
     }
 
     /* Stat counter glow */
@@ -670,34 +682,34 @@
         </h2>
       </div>
 
-      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 stagger">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 stagger">
         <div class="pixel-card reveal" data-colors='["#FFCB00","#000000","#E5B800"]'>
           <canvas></canvas>
-          <span class="logo-text">Wagner</span>
+          <img src="brand_assets/wagner-logo.png" alt="Wagner" class="logo-img">
         </div>
         <div class="pixel-card reveal" data-colors='["#CE0029","#E0002B","#9B001F"]'>
           <canvas></canvas>
-          <span class="logo-text">Fanuc</span>
+          <img src="brand_assets/fanuc-logo.jpeg" alt="Fanuc" class="logo-img">
         </div>
-        <div class="pixel-card reveal" data-colors='["#003366","#0055A4","#1a1a2e"]'>
+        <div class="pixel-card reveal" data-colors='["#0099D8","#00B2E3","#4DB848"]'>
           <canvas></canvas>
-          <span class="logo-text">Koch</span>
+          <img src="brand_assets/koch-filter-logo.png" alt="Koch Filter" class="logo-img">
         </div>
-        <div class="pixel-card reveal" data-colors='["#0181C6","#F25E20","#4F626E"]'>
+        <div class="pixel-card reveal" data-colors='["#0072B8","#0099D8","#005A8C"]'>
           <canvas></canvas>
-          <span class="logo-text">Donaldson</span>
+          <img src="brand_assets/donaldson-torit-logo.jpg" alt="Donaldson Torit" class="logo-img">
         </div>
-        <div class="pixel-card reveal" data-colors='["#005DAA","#F47920","#003B6F"]'>
+        <div class="pixel-card reveal" data-colors='["#CC2229","#333333","#999999"]'>
           <canvas></canvas>
-          <span class="logo-text">GFS</span>
+          <img src="brand_assets/gfs-logo.png" alt="Global Finishing Solutions" class="logo-img">
         </div>
         <div class="pixel-card reveal" data-colors='["#00468E","#00152A","#0066CC"]'>
           <canvas></canvas>
-          <span class="logo-text">D&uuml;rr</span>
+          <img src="brand_assets/durr-logo.webp" alt="D&uuml;rr" class="logo-img">
         </div>
-        <div class="pixel-card reveal" data-colors='["#0072CE","#005BA1","#00A3E0"]'>
+        <div class="pixel-card reveal" data-colors='["#CC0000","#990000","#333333"]'>
           <canvas></canvas>
-          <span class="logo-text">CAT Pumps</span>
+          <img src="brand_assets/ca-technologies-logo.png" alt="C.A. Technologies" class="logo-img">
         </div>
       </div>
     </div>
