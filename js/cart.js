@@ -430,7 +430,8 @@ const OmegaCart = {
     `;
 
     container.innerHTML = html;
-  }
+  },
+
   // ========================
   // B2B INVOICE MODAL
   // ========================
