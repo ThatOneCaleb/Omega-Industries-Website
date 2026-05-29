@@ -258,7 +258,7 @@ const OmegaCart = {
             Checkout
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </button>
-          <a href="shop-cart.html" style="display:block;text-align:center;margin-top:10px;font-family:'Barlow Condensed',sans-serif;font-size:11px;text-transform:uppercase;letter-spacing:0.15em;color:#2D8F4E;text-decoration:none;">View Full Cart</a>
+          <a href="shop-cart.html" style="display:block;text-align:center;margin-top:12px;font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;text-transform:uppercase;letter-spacing:0.15em;color:#2D8F4E;text-decoration:none;padding:10px;">View Full Cart</a>
         </div>
       </div>
     `;
